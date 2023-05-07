@@ -79,7 +79,8 @@ OBJ = ./bin/portal.o \
 
 WARNINGS=-w
 
-FLAGS=-std=c++11
+RESOURCEDIR = $(out)/share/polly-b-gone/
+FLAGS=-std=c++11 -DRESOURCEDIR="\"$(RESOURCEDIR)\"" $(NIX_CFLAGS_COMPILE)
 
 all:
 	g++ -c -g $(SRC) $(INCLUDES) $(WARNINGS) $(FLAGS)
