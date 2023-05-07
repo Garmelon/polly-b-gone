@@ -116,37 +116,22 @@ static void toggleFullScreen() {
 
 static void handleKeyDown(SDL_Event* event) {
   switch (event->key.keysym.sym) {
-    case SDLK_LEFT: {
-      if (event->key.keysym.mod & KMOD_META) {
-        world->previousRoom();
-      }
-      break;
-    }
-    case SDLK_DOWN: {
-      if (event->key.keysym.mod & KMOD_META) {
-        world->resetPlayer();
-      }
-      break;
-    }
-    case SDLK_RIGHT: {
-      if (event->key.keysym.mod & KMOD_META) {
-        world->nextRoom();
-      }
-      break;
-    }
-    case SDLK_a: world->player().move(Player::LEFT); break;
-    case SDLK_s: world->player().move(Player::BACKWARD); break;
-    case SDLK_d: world->player().move(Player::RIGHT); break;
-    case SDLK_w: world->player().move(Player::FORWARD); break;
+    case SDLK_j: world->previousRoom(); break;
+    case SDLK_r: world->resetPlayer(); break;
+    case SDLK_l: world->nextRoom(); break;
+    case SDLK_a: case SDLK_LEFT:  world->player().move(Player::LEFT); break;
+    case SDLK_s: case SDLK_DOWN:  world->player().move(Player::BACKWARD); break;
+    case SDLK_d: case SDLK_RIGHT: world->player().move(Player::RIGHT); break;
+    case SDLK_w: case SDLK_UP:    world->player().move(Player::FORWARD); break;
   }
 }
 
 static void handleKeyUp(SDL_Event* event) {
   switch (event->key.keysym.sym) {
-    case SDLK_a: world->player().stop(Player::LEFT); break;
-    case SDLK_s: world->player().stop(Player::BACKWARD); break;
-    case SDLK_d: world->player().stop(Player::RIGHT); break;
-    case SDLK_w: world->player().stop(Player::FORWARD); break;
+    case SDLK_a: case SDLK_LEFT:  world->player().stop(Player::LEFT); break;
+    case SDLK_s: case SDLK_DOWN:  world->player().stop(Player::BACKWARD); break;
+    case SDLK_d: case SDLK_RIGHT: world->player().stop(Player::RIGHT); break;
+    case SDLK_w: case SDLK_UP:    world->player().stop(Player::FORWARD); break;
     case SDLK_SPACE: world->togglePaused(); break;
     case SDLK_q: if (!(event->key.keysym.mod & KMOD_META)) break;
     case SDLK_ESCAPE: run = false; break;
